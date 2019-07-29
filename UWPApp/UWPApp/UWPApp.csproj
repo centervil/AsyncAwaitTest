@@ -118,7 +118,17 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Helper\BindableBase.cs" />
+    <Compile Include="Helper\DelegateCommand.cs" />
+    <Compile Include="Helper\Singleton.cs" />
+    <Compile Include="Models\Application\MainUseCase.cs" />
+    <Compile Include="Models\Domain\EnumService.cs" />
+    <Compile Include="Models\Domain\IDeviceRepository.cs" />
+    <Compile Include="Models\Domain\IEnumPrinter.cs" />
+    <Compile Include="Models\InfraUwp\DeviceRepository.cs" />
+    <Compile Include="Models\InfraUwp\EnumPrinters.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,7 +153,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -153,6 +163,7 @@
       <Version>6.2.8</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

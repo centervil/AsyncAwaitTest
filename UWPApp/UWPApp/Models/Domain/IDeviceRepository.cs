@@ -9,5 +9,6 @@ namespace UWPApp.Models.Domain
     public interface IDeviceRepository
     {
         void Store(string name);
+        string GetDeviceName();
     }
 }

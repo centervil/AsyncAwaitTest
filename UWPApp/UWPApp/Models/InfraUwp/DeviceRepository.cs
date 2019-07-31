@@ -10,11 +10,17 @@ namespace UWPApp.Models.InfraUwp
 {
     class DeviceRepository : IDeviceRepository
     {
-        public string PrinterName { get; private set; }
+        private string printerName_ = "Initial";
+
+        public string GetDeviceName()
+        {
+            return printerName_;
+        }
+
         public void Store(string name)
         {
-            this.PrinterName = name;
-            Debug.WriteLine("[{0}] is Stored", name);
+            this.printerName_ = name;
+            Debug.Write(name + " is Stored");
         }
     }
 }

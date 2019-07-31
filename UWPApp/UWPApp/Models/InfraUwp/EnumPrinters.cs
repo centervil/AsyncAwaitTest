@@ -14,8 +14,8 @@ namespace UWPApp.Models.InfraUwp
         void IEnumPrinter.EnumPrinters(IDeviceRepository deviceRepository_)
         {
             var printerName = "Printer1";
-            deviceRepository_.Store(printerName);
             Debug.WriteLine("EnumPrinters() is Called");
+            deviceRepository_.Store(printerName);
         }
     }
 }

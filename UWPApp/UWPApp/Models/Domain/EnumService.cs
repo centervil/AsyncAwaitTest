@@ -8,8 +8,8 @@ namespace UWPApp.Models.Domain
 {
     public class EnumService
     {
-        IEnumPrinter enumPrinter_;
-        IDeviceRepository deviceRepository_;
+        private IEnumPrinter enumPrinter_;
+        private IDeviceRepository deviceRepository_;
         public EnumService(IEnumPrinter enumPrinter, IDeviceRepository deviceRepository)
         {
             this.enumPrinter_ = enumPrinter;
@@ -18,6 +18,10 @@ namespace UWPApp.Models.Domain
         public void EnumPrinters()
         {
             this.enumPrinter_.EnumPrinters(deviceRepository_);
+        }
+        public string GetPrinterName()
+        {
+            return this.deviceRepository_.GetDeviceName();
         }
     }
 }

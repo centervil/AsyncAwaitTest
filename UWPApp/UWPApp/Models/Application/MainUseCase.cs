@@ -11,30 +11,23 @@ namespace UWPApp.Models.Application
     public class MainUseCase : BindableBase
     {
         private string deviceNames_;
+        private EnumService enumService_;
+
         public MainUseCase()
         {
+            enumService_ = new EnumService(new InfraUwp.EnumPrinters(), new InfraUwp.DeviceRepository());
         }
 
         public string DeviceNames_
         {
-            get
-            {
-                return deviceNames_;
-            }
-            set
-            {
-                SetProperty(ref this.deviceNames_, value);
-            }
+            get { return deviceNames_; }
+            set { SetProperty(ref this.deviceNames_, value); }
         }
 
-        public void GetDeviceNames()
+        public void EnumAndGetName()
         {
-            IEnumPrinter enumPrinter = new InfraUwp.EnumPrinters();
-            IDeviceRepository deviceRepository = new InfraUwp.DeviceRepository();
-            var enumService = new EnumService(enumPrinter, deviceRepository);
-            enumService.EnumPrinters();
-
-            //DeviceNames_ = deviceRepository.Get();
+            enumService_.EnumPrinters();
+            DeviceNames_ = enumService_.GetPrinterName();
         }
     }
 }

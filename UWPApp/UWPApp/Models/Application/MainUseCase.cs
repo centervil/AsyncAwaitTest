@@ -26,8 +26,7 @@ namespace UWPApp.Models.Application
 
         public void EnumAndGetName()
         {
-            enumService_.EnumPrinters();
-            DeviceNames_ = enumService_.GetPrinterName();
+            DeviceNames_ = enumService_.EnumPrinters();
         }
     }
 }

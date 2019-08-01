@@ -15,12 +15,9 @@ namespace UWPApp.Models.Domain
             this.enumPrinter_ = enumPrinter;
             this.deviceRepository_ = deviceRepository;
         }
-        public void EnumPrinters()
+        public string EnumPrinters()
         {
             this.enumPrinter_.EnumPrinters(deviceRepository_);
-        }
-        public string GetPrinterName()
-        {
             return this.deviceRepository_.GetDeviceName();
         }
     }

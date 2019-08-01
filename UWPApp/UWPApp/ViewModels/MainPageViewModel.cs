@@ -14,19 +14,32 @@ namespace UWPApp.ViewModels
         private string logMsg_;
         private MainUseCase mainUseCase_;
 
-        public MainPageViewModel()
-        {
-            this.MainUseCase_ = new MainUseCase();
-            EnumCommand = new DelegateCommand(() => MainUseCase_.EnumAndGetName());
-            this.LogMsg = "Start!";
-        }
-        public DelegateCommand EnumCommand { get; set; }
         public string LogMsg
         {
-            get { return this.logMsg_; }
-            set { this.SetProperty(ref this.logMsg_, value); }
+            get { return logMsg_; }
+            set
+            {
+                SetProperty(ref this.logMsg_, value);
+            }
         }
-        public MainUseCase MainUseCase_ { get; set; }
+        public DelegateCommand EnumCommand { get; set; }
+
+        public MainPageViewModel()
+        {
+            this.mainUseCase_ = new MainUseCase();
+            EnumCommand = new DelegateCommand(() => mainUseCase_.EnumAndGetName());
+            this.LogMsg = "Start!";
+            this.mainUseCase_.PropertyChanged += MsgChanged;
+        }
+
+        private void MsgChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != "DeviceNames_") return;
+
+            var u = (MainUseCase)sender;
+            LogMsg = u.DeviceNames_;
+        }
+
 
         //{
         //    //get { return this.mainUseCase_.DeviceNames_; }

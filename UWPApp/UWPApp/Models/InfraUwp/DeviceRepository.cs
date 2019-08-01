@@ -20,7 +20,7 @@ namespace UWPApp.Models.InfraUwp
         public void Store(string name)
         {
             this.printerName_ = name;
-            Debug.Write(name + " is Stored");
+            Debug.Write(name + " is Stored\n");
         }
     }
 }

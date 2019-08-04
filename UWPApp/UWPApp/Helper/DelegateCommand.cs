@@ -31,6 +31,7 @@ namespace UWPApp.Helper
             _execute();
         }
 
+        /// <inheritdoc/>
         public event EventHandler CanExecuteChanged
         {
             add
@@ -44,10 +45,12 @@ namespace UWPApp.Helper
         }
 
         #region ICommand
+        /// <inheritdoc/>
         bool ICommand.CanExecute(object parameter)
         {
             return CanExecute();
         }
+        /// <inheritdoc/>
         void ICommand.Execute(object parameter)
         {
             Execute();

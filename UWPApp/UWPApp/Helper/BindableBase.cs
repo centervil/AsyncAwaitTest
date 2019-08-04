@@ -10,6 +10,7 @@ namespace UWPApp.Helper
 {
     public class BindableBase : INotifyPropertyChanged
     {
+        /// <inheritdoc/>
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual bool SetProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null)
         {

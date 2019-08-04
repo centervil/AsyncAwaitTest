@@ -1,47 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UWPApp.Helper;
-using UWPApp.Models.Application;
+﻿// <copyright file="MainPageViewModel.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace UWPApp.ViewModels
 {
-    class MainPageViewModel : BindableBase
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using UWPApp.Helper;
+    using UWPApp.Models.Application;
+
+    internal class MainPageViewModel : BindableBase
     {
-        private string logMsg_;
-        private MainUseCase mainUseCase_;
+        private string logMsg;
+        private MainUseCase mainUseCase;
 
         public string LogMsg
         {
-            get { return logMsg_; }
-            set
-            {
-                SetProperty(ref this.logMsg_, value);
-            }
+            get { return this.logMsg; }
+            set { this.SetProperty(ref this.logMsg, value); }
         }
+
         public DelegateCommand EnumCommand { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainPageViewModel"/> class.
+        /// </summary>
         public MainPageViewModel()
         {
-            this.mainUseCase_ = new MainUseCase();
-            EnumCommand = new DelegateCommand(() => mainUseCase_.EnumAndGetName());
+            this.mainUseCase = new MainUseCase();
+            this.EnumCommand = new DelegateCommand(() => this.mainUseCase.EnumAndGetName());
             this.LogMsg = "Start!";
-            this.mainUseCase_.PropertyChanged += MsgChanged;
+            this.mainUseCase.PropertyChanged += this.MsgChanged;
         }
 
         private void MsgChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != "DeviceNames_") return;
+            if (e.PropertyName != "DeviceNames")
+            {
+                return;
+            }
 
             var u = (MainUseCase)sender;
-            LogMsg = u.DeviceNames_;
+            this.LogMsg = u.DeviceNames_;
         }
 
-
-        //{
+        // {
         //    //get { return this.mainUseCase_.DeviceNames_; }
         //    //set
         //    //{
@@ -49,6 +56,6 @@ namespace UWPApp.ViewModels
         //    //    //this.mainUseCase_ = value;
         //    //    this.LogMsg = this.mainUseCase_.DeviceNames_;
         //    //}
-        //}
+        // }
     }
 }

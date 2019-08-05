@@ -17,12 +17,20 @@ namespace UWPApp.ViewModels
     {
         private string logMsg;
         private MainUseCase mainUseCase;
+        private bool isProgress = false;
 
         public string LogMsg
         {
             get { return this.logMsg; }
             set { this.SetProperty(ref this.logMsg, value); }
         }
+
+        public bool IsProgress
+        {
+            get { return this.isProgress; }
+            set { this.SetProperty(ref this.isProgress, value); }
+        }
+
 
         public DelegateCommand EnumCommand { get; set; }
 
@@ -32,7 +40,12 @@ namespace UWPApp.ViewModels
         public MainPageViewModel()
         {
             this.mainUseCase = new MainUseCase();
-            this.EnumCommand = new DelegateCommand(() => this.mainUseCase.EnumAndGetName());
+            this.EnumCommand = new DelegateCommand(async () =>
+            {
+                this.IsProgress = true;
+                await this.mainUseCase.EnumAndGetNameAsync();
+                this.IsProgress = false;
+            });
             this.LogMsg = "Start!";
             this.mainUseCase.PropertyChanged += this.MsgChanged;
         }

@@ -12,6 +12,6 @@ namespace UWPApp.Models.Domain
 
     public interface IEnumPrinter
     {
-        void EnumPrinters(IDeviceRepository deviceRepository_);
+        Task EnumPrinters(IDeviceRepository deviceRepository_);
     }
 }

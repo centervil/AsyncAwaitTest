@@ -26,9 +26,9 @@ namespace UWPApp.Models.Domain
             this.deviceRepository = deviceRepository;
         }
 
-        public string EnumPrinters()
+        public async Task<string> EnumPrintersAsync()
         {
-            this.enumPrinter.EnumPrinters(this.deviceRepository);
+            await enumPrinter.EnumPrinters(deviceRepository);
             return this.deviceRepository.GetDeviceName();
         }
     }

@@ -16,9 +16,10 @@ namespace UWPApp.Models.InfraUwp
     internal class EnumPrinters : IEnumPrinter
     {
         /// <inheritdoc/>
-        void IEnumPrinter.EnumPrinters(IDeviceRepository deviceRepository_)
+        async Task IEnumPrinter.EnumPrinters(IDeviceRepository deviceRepository_)
         {
-            Debug.WriteLine("EnumPrinters() is Called\n");
+            await Task.Delay(10000);
+            Debug.WriteLine("EnumPrinters() is Called");
             var printerName = "Printer1";
             deviceRepository_.Store(printerName);
         }

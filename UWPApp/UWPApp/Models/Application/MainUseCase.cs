@@ -28,9 +28,9 @@ namespace UWPApp.Models.Application
             set { this.SetProperty(ref this.deviceNames, value); }
         }
 
-        public void EnumAndGetName()
+        public async Task EnumAndGetNameAsync()
         {
-            this.DeviceNames_ = this.enumService.EnumPrinters();
+            this.DeviceNames_ = await this.enumService.EnumPrintersAsync();
         }
     }
 }
